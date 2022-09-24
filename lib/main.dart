@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:video_call_app/test_screen.dart';
+import 'package:video_call_app/welcome_screen.dart';
 import 'package:video_call_app/theme.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppTheme.mainTheme(),
-      home: const TestScreen(),
+      home: const WelcomeScreen(),
     );
   }
 }
