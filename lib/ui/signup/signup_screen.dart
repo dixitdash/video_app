@@ -19,7 +19,7 @@ class _SignupScreenState extends State<SignupScreen> {
          onPressed: () {
            Navigator.pop(context);
          },
-         icon: Icon(Icons.arrow_back_ios_new),
+         icon: const Icon(Icons.arrow_back_ios_new),
        ),
       ),
       body: Column(
@@ -32,8 +32,8 @@ class _SignupScreenState extends State<SignupScreen> {
           Expanded(
             flex: 3,
             child: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
                 ),
