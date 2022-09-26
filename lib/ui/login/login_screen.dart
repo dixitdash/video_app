@@ -7,8 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:video_call_app/infraStructure/model/user_model.dart';
 
 //local package
+import '../../common/common_utils.dart';
 import '../../infraStructure/theme/theme.dart';
-import '../common/common_utils.dart';
 import '../home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -24,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
       body: Center(
         child: Column(
           children: [
@@ -32,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
               flex: 2,
               child: Padding(
                 padding: const EdgeInsets.only(top: 50.0),
-                child: CustomWidgets.image,
+                child: CommonUtils.image,
               ),
             ),
             Expanded(
@@ -52,7 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: FloatingActionButton.extended(
-                        backgroundColor: AppTheme.greenColor,
                         onPressed: () async {
                           UserCredential? userCred = await signInWithGoogle();
                            setUser();

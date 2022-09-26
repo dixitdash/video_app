@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:video_call_app/welcome_screen.dart';
-import 'package:video_call_app/theme.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:video_call_app/infraStructure/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: AppTheme.lightTheme(),
       darkTheme: AppTheme.darkTheme(),
-      home: const WelcomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
