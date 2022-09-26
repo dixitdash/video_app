@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_call_app/ui/welcome_screen/welcome_screen.dart';
-
-import 'common/theme.dart';
+import 'package:video_call_app/infraStructure/theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());

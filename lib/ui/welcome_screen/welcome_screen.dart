@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:video_call_app/common/common_utils.dart';
 import 'package:video_call_app/ui/signup/signup_screen.dart';
 import 'package:video_call_app/ui/login/login_screen.dart';
-
-import '../../common/theme.dart';
+import '../../infrastructure/theme/app_theme.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -89,7 +88,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
+                              builder: (context) =>  LoginScreen(),
                             ),
                           );
                         },
