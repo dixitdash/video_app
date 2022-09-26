@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../common/common_utils.dart';
 import '../../infraStructure/theme/app_theme.dart';
+import '../home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -46,13 +47,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: FloatingActionButton.extended(
                         onPressed: () async {
                           UserCredential? userCred = await signInWithGoogle();
-                           setUser();
+                          setUser();
                           if (userCred != null) {
-                           /* Navigator.of(context).pushAndRemoveUntil(
+                            Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
                                   builder: (context) => HomeScreen(),
                                 ),
-                                (Route<dynamic> route) => false);*/
+                                (Route<dynamic> route) => false);
                           } else {
                             return;
                           }
@@ -102,9 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
     print("User Email: ${user?.email}");
     print("User id: ${user?.uid}");
     return await FirebaseAuth.instance.signInWithCredential(credential);
-
   }
 
-  Future<void> setUser() async {
-  }
+  Future<void> setUser() async {}
 }
