@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:video_call_app/common_metod.dart';
+import 'package:video_call_app/common/common_utils.dart';
 import 'package:video_call_app/login_screen.dart';
 import 'package:video_call_app/theme.dart';
 
@@ -14,9 +14,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
       appBar: AppBar(
-        backgroundColor: AppTheme.backgroundColor,
         elevation: 0,
        leading:  IconButton(
          onPressed: () {
@@ -30,13 +28,12 @@ class _SignupScreenState extends State<SignupScreen> {
         children: [
           Expanded(
             flex: 1,
-            child: CustomMainScreen.image,
+            child: CommonUtils.image,
           ),
           Expanded(
             flex: 3,
             child: Container(
               decoration: BoxDecoration(
-                color: AppTheme.whiteColor,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
@@ -88,7 +85,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.only(right: 20, bottom: 20),
                     child: FloatingActionButton.extended(
-                      backgroundColor: AppTheme.greenColor,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -104,7 +100,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.only(right: 20, bottom: 20),
                     child: FloatingActionButton.extended(
-                      backgroundColor: AppTheme.blackColor,
                       onPressed: () {},
                       label: Row(
                         children: [

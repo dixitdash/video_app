@@ -1,6 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:video_call_app/common_metod.dart';
+import 'package:video_call_app/common/common_utils.dart';
 import 'package:video_call_app/login_screen.dart';
 import 'package:video_call_app/signup_screen.dart';
 import 'package:video_call_app/theme.dart';
@@ -22,7 +22,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      // backgroundColor: AppTheme.backgroundColor,
+      // backgroundColor: AppTheme.backgroundColor,
       body: Center(
         child: Column(
           children: [
@@ -30,31 +31,25 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               flex: 3,
               child: Padding(
                 padding: const EdgeInsets.only(top: 50.0),
-                child: CustomMainScreen.image,
+                child: CommonUtils.image,
               ),
             ),
-            Expanded(
-              flex: 3,
-              child: CarouselSlider.builder(
-                options: CarouselOptions(
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  viewportFraction: 0.9,
-                ),
-                itemCount: items.length,
-                itemBuilder: (BuildContext context, int index, int realIndex) {
+            SizedBox(
+              height: MediaQuery.of(context).size.height/5,
+
+              child: Swiper(
+                itemBuilder: (context, index) {
                   return RichText(
                     textAlign: TextAlign.center,
-                    text: TextSpan(
-                      text: items[index],
-                    ),
+                    text: TextSpan(text: items[index], style: Theme.of(context).textTheme.bodyText2),
                   );
                 },
+                autoplay: true,
+                itemCount: items.length,
+                pagination: const SwiperPagination(),
               ),
             ),
+            const SizedBox(height: 20,),
             Expanded(
               flex: 2,
               child: Container(
@@ -73,7 +68,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: FloatingActionButton.extended(
-                        backgroundColor: AppTheme.greenColor,
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -89,11 +83,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       width: MediaQuery.of(context).size.width,
                       margin: const EdgeInsets.only(top: 20),
                       child: FloatingActionButton.extended(
-                        backgroundColor: AppTheme.blackColor,
+                        backgroundColor: AppTheme.darkPrimaryColor,
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),),);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ),
+                          );
                         },
-                        label: const Text('Login'),
+                        label: Text('Login',style: Theme.of(context).textTheme.button),
                       ),
                     ),
                   ],
