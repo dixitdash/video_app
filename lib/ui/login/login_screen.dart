@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:video_call_app/common/common_utils.dart';
-import 'package:video_call_app/theme.dart';
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 

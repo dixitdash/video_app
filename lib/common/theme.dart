@@ -28,8 +28,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      textTheme: GoogleFonts.varelaRoundTextTheme()
-          .copyWith(bodyText2: TextStyle(color: whiteColor, fontWeight: FontWeight.w700), button: TextStyle(color: whiteColor, fontWeight: FontWeight.w700)),
+      textTheme: GoogleFonts.varelaRoundTextTheme().copyWith(bodyText2: TextStyle(color: whiteColor, fontWeight: FontWeight.w700)),
       inputDecorationTheme: const InputDecorationTheme(
         contentPadding: EdgeInsets.symmetric(
           vertical: 12,

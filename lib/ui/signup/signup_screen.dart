@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_call_app/common/common_utils.dart';
-import 'package:video_call_app/login_screen.dart';
-import 'package:video_call_app/theme.dart';
+import 'package:video_call_app/ui/login/login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
