@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:video_call_app/common/common_utils.dart';
 import 'package:video_call_app/ui/login/login_screen.dart';
 
+import '../../infraStructure/theme/app_theme.dart';
+
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
@@ -13,34 +15,26 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-       leading:  IconButton(
-         onPressed: () {
-           Navigator.pop(context);
-         },
-         icon: const Icon(Icons.arrow_back_ios_new),
-       ),
-      ),
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            flex: 1,
             child: CommonUtils.image,
           ),
           Expanded(
             flex: 3,
             child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration:  BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
                 ),
               ),
               height: MediaQuery.of(context).size.height / 3,
               width: double.infinity,
-              padding: const EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 20,top: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,13 +86,14 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         );
                       },
-                      label: const Text('Sign up'),
+                      label:  Text('Sign up',style: Theme.of(context).textTheme.button,),
                     ),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.only(right: 20, bottom: 20),
                     child: FloatingActionButton.extended(
+                      backgroundColor: AppTheme.darkPrimaryColor,
                       onPressed: () {},
                       label: Row(
                         children: [
@@ -106,7 +101,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             'assets/images/google_logo.png',
                             height: 35,
                           ),
-                          const Text('Google'),
+                           Text('Google',style: Theme.of(context).textTheme.button,),
                         ],
                       ),
                     ),

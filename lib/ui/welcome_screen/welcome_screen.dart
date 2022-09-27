@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:video_call_app/check_internet/no_internet_screen.dart';
 import 'package:video_call_app/common/common_utils.dart';
 import 'package:video_call_app/ui/signup/signup_screen.dart';
 import 'package:video_call_app/ui/login/login_screen.dart';
@@ -22,85 +23,92 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: AppTheme.backgroundColor,
-      // backgroundColor: AppTheme.backgroundColor,
-      body: Center(
-        child: Column(
-          children: [
-            Expanded(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 50.0),
-                child: CommonUtils.image,
+      body: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 50.0),
+              child: CommonUtils.image,
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 5,
+            child: Swiper(
+              itemBuilder: (context, index) {
+                return Text(
+                  textAlign: TextAlign.center,
+                  items[index],
+                  style: Theme.of(context).textTheme.bodyText2,
+                );
+              },
+              autoplay: true,
+              itemCount: items.length,
+              viewportFraction: 0.98,
+              pagination: SwiperPagination(
+                builder: DotSwiperPaginationBuilder(color: Theme.of(context).cardColor, activeColor: AppTheme.secondaryColor),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height/5,
-
-              child: Swiper(
-                itemBuilder: (context, index) {
-                  return RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(text: items[index], style: Theme.of(context).textTheme.bodyText2),
-                  );
-                },
-                autoplay: true,
-                itemCount: items.length,
-                pagination: const SwiperPagination(),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
               ),
-            ),
-            const SizedBox(height: 20,),
-            Expanded(
-              flex: 2,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppTheme.transparentColor,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
+              height: MediaQuery.of(context).size.height / 2,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignupScreen(),
+                          ),
+                        );
+                      },
+                      label: Text(
+                        'Get Started',
+                        style: Theme.of(context).textTheme.button,
+                      ),
+                    ),
                   ),
-                ),
-                height: MediaQuery.of(context).size.height / 2,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: FloatingActionButton.extended(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignupScreen(),
-                            ),
-                          );
-                        },
-                        label: const Text('Get Started'),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(top: 20),
+                    child: FloatingActionButton.extended(
+                      backgroundColor: AppTheme.darkPrimaryColor,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      },
+                      label: Text(
+                        'Login',
+                        style: Theme.of(context).textTheme.button,
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.only(top: 20),
-                      child: FloatingActionButton.extended(
-                        backgroundColor: AppTheme.darkPrimaryColor,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>  LoginScreen(),
-                            ),
-                          );
-                        },
-                        label: Text('Login',style: Theme.of(context).textTheme.button),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
