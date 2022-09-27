@@ -35,8 +35,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height/5,
-
+              height: MediaQuery.of(context).size.height / 5,
               child: Swiper(
                 itemBuilder: (context, index) {
                   return RichText(
@@ -49,7 +48,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 pagination: const SwiperPagination(),
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Expanded(
               flex: 2,
               child: Container(
@@ -76,7 +77,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             ),
                           );
                         },
-                        label: const Text('Get Started'),
+                        label: Text('Get Started', style: Theme.of(context).textTheme.button),
                       ),
                     ),
                     Container(
@@ -84,15 +85,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       margin: const EdgeInsets.only(top: 20),
                       child: FloatingActionButton.extended(
                         backgroundColor: AppTheme.darkPrimaryColor,
+                        heroTag: "ok",
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>  LoginScreen(),
+                              builder: (context) => const LoginScreen(),
                             ),
                           );
                         },
-                        label: Text('Login',style: Theme.of(context).textTheme.button),
+                        label: Text('Login', style: Theme.of(context).textTheme.button),
                       ),
                     ),
                   ],

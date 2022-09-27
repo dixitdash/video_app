@@ -1,9 +1,9 @@
 class UserModel {
   final String name;
   final String email;
-  final String id;
+  final String? id;
 
-  UserModel(this.name, this.email, this.id);
+  UserModel({required this.name, required this.email, this.id});
 
   UserModel.fromJson(
     Map<String, dynamic> json,
@@ -18,5 +18,7 @@ class UserModel {
       };
 
   @override
-  String toString() => 'UserModel<$UserModel>';
+  String toString() {
+    return 'UserModel{name: $name, email: $email, id: $id}';
+  }
 }

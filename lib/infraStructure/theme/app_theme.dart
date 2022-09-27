@@ -11,7 +11,6 @@ class AppTheme {
   static Color secondaryColor = const Color(0xff02D285);
   static Color whiteColor = const Color(0xffffffff);
 
-
   //Dark theme
   static Color darkPrimaryColor = const Color(0xff000000);
   static Color darkPrimaryLightColor = const Color(0xff2c2c2c);
@@ -54,8 +53,16 @@ class AppTheme {
           borderRadius: BorderRadius.circular(10),
         ),
       ),
-      textTheme: GoogleFonts.varelaRoundTextTheme()
-          .copyWith(bodyText2: TextStyle(color: whiteColor, fontWeight: FontWeight.w700), button: TextStyle(color: whiteColor, fontWeight: FontWeight.w700)),
+      textTheme: GoogleFonts.varelaRoundTextTheme().copyWith(
+        bodyText2: TextStyle(
+          color: whiteColor,
+          fontWeight: FontWeight.w700,
+        ),
+        button: TextStyle(
+          color: whiteColor,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
       inputDecorationTheme: const InputDecorationTheme(
         contentPadding: EdgeInsets.symmetric(
           vertical: 12,
