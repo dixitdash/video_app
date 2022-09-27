@@ -90,11 +90,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     margin: const EdgeInsets.only(top: 20),
                     child: FloatingActionButton.extended(
                       backgroundColor: AppTheme.darkPrimaryColor,
-                      onPressed: () {
+                      heroTag: "ok",onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                            builder: (context) => constLoginScreen(),
                           ),
                         );
                       },

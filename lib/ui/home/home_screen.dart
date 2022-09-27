@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../login/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-   HomeScreen({Key? key}) : super(key: key);
+   const HomeScreen({Key? key}) : super(key: key);
 
 
   @override
@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 await signOutGoogle();
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),
+                    MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()),
                     ModalRoute.withName('/')
                 );
               },
