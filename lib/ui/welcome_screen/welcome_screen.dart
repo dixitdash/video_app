@@ -1,10 +1,9 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:video_call_app/check_internet/no_internet_screen.dart';
-import 'package:video_call_app/common/common_utils.dart';
 import 'package:video_call_app/ui/signup/signup_screen.dart';
 import 'package:video_call_app/ui/login/login_screen.dart';
 import '../../infrastructure/theme/app_theme.dart';
+import '../common/common_utils.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);

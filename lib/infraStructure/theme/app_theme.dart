@@ -20,36 +20,37 @@ class AppTheme {
 
   static ThemeData lightTheme() {
     return ThemeData(
-        primaryColor: primaryColor,
-        primaryColorLight: primaryLightColor,
-        primaryColorDark: primaryDarkColor,
-        scaffoldBackgroundColor: backgroundColor,
-        cardColor: whiteColor,
-        colorScheme: ColorScheme.light(secondary: secondaryColor).copyWith(secondary: accentColor),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
+      primaryColor: primaryColor,
+      primaryColorLight: primaryLightColor,
+      primaryColorDark: primaryDarkColor,
+      scaffoldBackgroundColor: backgroundColor,
+      cardColor: whiteColor,
+      colorScheme: ColorScheme.light(secondary: secondaryColor).copyWith(secondary: accentColor),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
         ),
-        textTheme: GoogleFonts.varelaRoundTextTheme().copyWith(
-          bodyText2: TextStyle(
-            color: whiteColor,
-            fontWeight: FontWeight.w700,
-          ),
-          button: TextStyle(
-            color: whiteColor,
-            fontWeight: FontWeight.w700,
-          ),
+      ),
+      textTheme: GoogleFonts.varelaRoundTextTheme().copyWith(
+        bodyText2: TextStyle(
+          color: whiteColor,
+          fontWeight: FontWeight.w700,
         ),
-        inputDecorationTheme: const InputDecorationTheme(
-          contentPadding: EdgeInsets.symmetric(
-            vertical: 12,
-          ),
-          isDense: true,
-          border: OutlineInputBorder(
-            borderSide: BorderSide(),
-          ),
-        ));
+        button: TextStyle(
+          color: whiteColor,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 12,
+        ),
+        isDense: true,
+        border: OutlineInputBorder(
+          borderSide: BorderSide(),
+        ),
+      ),
+    );
   }
 
   static ThemeData darkTheme() {

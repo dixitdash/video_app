@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-import '../login/login_screen.dart';
+import 'package:video_call_app/ui/signup/signup_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-   const HomeScreen({Key? key}) : super(key: key);
-
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -23,7 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
             const Center(
               child: Text(
                 'Welcome User',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black54),
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black54,
+                ),
               ),
             ),
             const SizedBox(height: 40),
@@ -36,16 +38,18 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () async {
                 await signOutGoogle();
                 Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()),
-                    ModalRoute.withName('/')
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const SignupScreen(),
+                  ),
+                  ModalRoute.withName('/'),
                 );
               },
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   'Sign Out',
-                  style: TextStyle(fontSize: 25, color: Colors.red),
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Theme.of(context).errorColor),
                 ),
               ),
             )
@@ -55,10 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  signOutGoogle() async{
-      await GoogleSignIn().signOut();
-      print("User Sign Out");
-    }
-
-
+  signOutGoogle() async {
+    await GoogleSignIn().signOut();
+  }
 }

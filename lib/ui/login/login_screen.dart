@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import '../../common/common_utils.dart';
+import 'package:video_call_app/infrastructure/repository/auth_repository.dart';
+import '../../infrastructure/repository/user_repository.dart';
+import '../common/common_utils.dart';
 import '../home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,6 +13,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final service = AuthRepository.instance;
+  final service1 = UserRepository.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: MediaQuery.of(context).size.width,
                       child: FloatingActionButton.extended(
                         onPressed: () async {
-                          UserCredential? userCred = await signInWithGoogle();
+                          UserCredential? userCred = await service.signInWithGoogle();
                           if (userCred != null) {
-                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomeScreen()), (Route<dynamic> route) => false);
+                            Navigator.of(context)
+                                .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomeScreen()), (Route<dynamic> route) => false);
                           } else {
                             return;
                           }
@@ -70,23 +75,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-  Future<UserCredential?> signInWithGoogle() async {
-    final FirebaseAuth auth = FirebaseAuth.instance;
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-    UserCredential authResult = await auth.signInWithCredential(credential);
-    User? user = authResult.user;
-    User currentUser = auth.currentUser!;
-    /*  UserModel userModel= UserModel(name:"${user?.displayName}",email: "${user?.email}",);
-    print('Nilesh =========>${user?.displayName},${user?.email}');
-    FirebaseFirestore.instance.collection('users').doc().set(userModel as Map<String,dynamic>);*/
-    return authResult;
-  }
-
-  Future<void> setUser() async {}
 }

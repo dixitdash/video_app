@@ -22,9 +22,9 @@ class _WelcomeScreenHolderState extends State<WelcomeScreenHolder> {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
-      mobile: (BuildContext context) => WelcomeScreen(),
-      tablet: (BuildContext context) => WelcomeScreenTab(),
-      desktop: (BuildContext context) => WelcomeScreenWeb(),
+      mobile: (BuildContext context) => const WelcomeScreen(),
+      tablet: (BuildContext context) => const WelcomeScreenTab(),
+      desktop: (BuildContext context) => const WelcomeScreenWeb(),
     );
   }
 }

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.video.roberrt.video_call_app">
    <application
-        android:label="video_call_app"
+        android:label="Yooom"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
