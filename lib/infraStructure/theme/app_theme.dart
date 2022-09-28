@@ -3,15 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   //Light Theme
-  // static Color primaryColor = const Color(0xff3F51B5);
-  static Color primaryColor = const Color(0xff545bc7);
-  // static Color accentColor = const Color(0xffFF4081);
-  static Color accentColor = const Color(0xff5d55e0);
-  // static Color primaryLightColor = const Color(0xffffa76f);
+  static Color primaryColor = const Color(0xff3F51B5);
+
+  static Color accentColor = const Color(0xffFF4081);
+
   static Color primaryLightColor = const Color(0xffffa76f);
-  // static Color primaryLightColor = const Color(0xffffa76f);
+
   static Color primaryDarkColor = const Color(0xff303F9F);
-  // static Color primaryDarkColor = const Color(0xff303F9F);
   static Color backgroundColor = const Color(0xffd1caff);
 
   static Color transparentColor = const Color(0xffffdec7);
@@ -30,7 +28,8 @@ class AppTheme {
       primaryColorDark: primaryDarkColor,
       scaffoldBackgroundColor: backgroundColor,
       cardColor: whiteColor,
-      colorScheme: ColorScheme.light(secondary: secondaryColor).copyWith(secondary: accentColor),
+      colorScheme: ColorScheme.light(secondary: secondaryColor)
+          .copyWith(secondary: accentColor),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
