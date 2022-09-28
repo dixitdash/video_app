@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:video_call_app/infrastructure/repository/auth_repository.dart';
+import 'package:lottie/lottie.dart';
+import 'package:video_call_app/infrastructure/common/utils/constants.dart';
 import 'package:video_call_app/ui/login/login_screen.dart';
 
 import '../common/common_utils.dart';
 import '../home/home_screen.dart';
+import '../../infrastructure/common/utils/images.dart';
+
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -22,146 +26,165 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-
-      body: Form(
-        key: _formKey,
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              child: CommonUtils.image,
+            Padding(
+              padding: const EdgeInsets.only(top: 50.0),
+              child: Lottie.asset(
+               Images.lottieSignupLottie,
+                height: MediaQuery.of(context).size.height / 3.2,
+              ),
             ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                decoration:  BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    Constants.signup,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                ),
-                height: MediaQuery.of(context).size.height / 3,
-                width: double.infinity,
-                padding: const EdgeInsets.only(left: 20,top: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Create an account',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 30),
-                      child: Text(
-                        'Sign up to continue',
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ),
-                    Text(
-                      'NAME',
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, right: 20, bottom: 20),
-                      child: TextFormField(
-                         controller: nameController,
-                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter name';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    Text(
-                      'EMAIL',
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, right: 20, bottom: 20),
-                      child: TextFormField(
-                        controller: emailController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter email address';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    Text(
-                      'PASSWORD',
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, right: 20, bottom: 20),
-                      child: TextFormField(
-                        controller: passwordController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter password';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.only(right: 20, bottom: 20),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if(_formKey.currentState!.validate()){
-                            AuthRepository.instance.createUserWithEmailAndPassword(email:emailController.text,password:passwordController.text);
-                            Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (context) => const HomeScreen()),
-                                  (Route<dynamic> route) => false,
-                            );
-                          }
-                        },
-                        child:  Text('Sign up',style: Theme.of(context).textTheme.button,),
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: const EdgeInsets.only(right: 20, bottom: 20),
-                      child: ElevatedButton(
-                        //color: AppTheme.darkPrimaryColor,
-                        onPressed: () {},
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/google_logo.png',
-                              height: 35,
-                            ),
-                             Text('Google',style: Theme.of(context).textTheme.button,),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Row(
                       children: [
-                        Text(
-                          'Already have an account?',
-                          style: Theme.of(context).textTheme.caption,
+                        const Icon(
+                          Icons.alternate_email,
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginScreen(),
-                              ),
-                            );
-                          },
-                          child: const Text('Login'),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: Constants.emailID,
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.lock,
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: Constants.password,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20.0,
+                      bottom: 20,
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.lock,
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: Constants.conformPassword,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      Constants.signup,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Expanded(
+                          child: Divider(
+                            endIndent: 10,
+                          ),
+                        ),
+                        Text(
+                         Constants.or,
+                        ),
+                        Expanded(
+                          child: Divider(
+                            indent: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey.shade200,
+                    ),
+                    onPressed: () {},
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          Images.imGoogleLogo,
+                          height: 50,
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                         Constants.loginWithGoogle,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        Constants.joinedUsBefore,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          Constants.login,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                color: Colors.amberAccent,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

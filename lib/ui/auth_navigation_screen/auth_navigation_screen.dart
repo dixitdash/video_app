@@ -20,16 +20,18 @@ class _AuthNavigationScreenState extends State<AuthNavigationScreen> {
 
   @override
   void initState() {
-    internetConnection = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result == ConnectivityResult.none) {
-        isOffline = true;
-      } else if (result == ConnectivityResult.mobile) {
-        isOffline = false;
-      } else if (result == ConnectivityResult.wifi) {
-        isOffline = false;
-      }
-      setState(() {});
-    });
+    internetConnection = Connectivity().onConnectivityChanged.listen(
+      (ConnectivityResult result) {
+        if (result == ConnectivityResult.none) {
+          isOffline = true;
+        } else if (result == ConnectivityResult.mobile) {
+          isOffline = false;
+        } else if (result == ConnectivityResult.wifi) {
+          isOffline = false;
+        }
+        setState(() {});
+      },
+    );
 
     super.initState();
   }
@@ -46,8 +48,11 @@ class _AuthNavigationScreenState extends State<AuthNavigationScreen> {
 
     return Stack(
       children: [
-        Visibility(visible: isOffline, child: const NoInternetScreen()),
-        Visibility(visible: !isOffline, child: widget.child),
+        Visibility(
+          visible: isOffline,
+          child: const NoInternetScreen(),
+        ),
+        Visibility(visible: !isOffline, child: widget.child,),
       ],
     );
   }

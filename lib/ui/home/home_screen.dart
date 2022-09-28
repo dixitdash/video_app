@@ -1,10 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:video_call_app/ui/signup/signup_screen.dart';
+import 'package:video_call_app/infrastructure/common/utils/constants.dart';
 
 import '../../infrastructure/repository/auth_repository.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -16,13 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(48.0),
+        padding: const EdgeInsets.all(
+          48.0,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Center(
               child: Text(
-                'Welcome User',
+                Constants.register,
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -30,28 +36,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(
+              height: 40,
+            ),
             Image.asset(
               "assets/images/splash.png",
               scale: 5,
             ),
-            const SizedBox(height: 40),
+            const SizedBox(
+              height: 40,
+            ),
             TextButton(
               onPressed: () async {
                 await _authRepo.signOutGoogle();
                 Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => const SignupScreen(),
-                  ),
-                  ModalRoute.withName('/'),
-                );
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => const LoginScreen(),
+                    ),
+                    ModalRoute.withName('/'));
               },
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(
+                  8.0,
+                ),
                 child: Text(
-                  'Sign Out',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Theme.of(context).errorColor),
+                  Constants.signOut,
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.red,
+                  ),
                 ),
               ),
             ),
@@ -59,5 +73,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  signOutGoogle() async {
+    await GoogleSignIn().signOut();
+    if (kDebugMode) {
+      print("User Sign Out");
+    }
   }
 }
