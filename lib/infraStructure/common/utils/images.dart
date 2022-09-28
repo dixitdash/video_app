@@ -8,6 +8,6 @@ class Images {
   static const String imSplash = "$_imagesDir/splash.png";
 
   // LOTTIE JASON
-  static const String lottieLoginCheckEmail = "$_lottieFileDir/login_check-email.json";
+  static const String lottieCheckEmail = "$_lottieFileDir/check-email.json";
   static const String lottieSignupLottie = "$_lottieFileDir/signup_lottie.json";
 }

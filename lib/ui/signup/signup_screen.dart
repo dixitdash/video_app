@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:video_call_app/infrastructure/common/utils/constants.dart';
 import 'package:video_call_app/ui/login/login_screen.dart';
+import 'package:video_call_app/ui/profile/profile_screen.dart';
 
 import '../../infrastructure/common/utils/images.dart';
-
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 50.0),
               child: Lottie.asset(
-               Images.lottieSignupLottie,
+                Images.lottieSignupLottie,
                 height: MediaQuery.of(context).size.height / 3.2,
               ),
             ),
@@ -102,7 +102,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfileScreen(),
+                        ),
+                      );
+                    },
                     child: Text(
                       Constants.signup,
                       style: Theme.of(context).textTheme.titleMedium,
@@ -119,7 +126,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                         Text(
-                         Constants.or,
+                          Constants.or,
                         ),
                         Expanded(
                           child: Divider(
@@ -144,7 +151,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           width: 20,
                         ),
                         Text(
-                         Constants.loginWithGoogle,
+                          Constants.loginWithGoogle,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ],

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
 import 'package:video_call_app/infrastructure/common/utils/constants.dart';
+import 'package:video_call_app/ui/email_verification/email_verification_screen.dart';
 import '../../infraStructure/theme/app_theme.dart';
 import '../../infrastructure/common/utils/images.dart';
 import '../../infrastructure/model/user_model.dart';
@@ -42,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Lottie.asset(
-              Images.lottieLoginCheckEmail,
+              Images.lottieSignupLottie,
               height: MediaQuery.of(context).size.height / 3,
             ),
             Padding(
@@ -98,7 +99,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 30,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const EmailVerificationScreen(),
+                        ),
+                      );
+                    },
                     child: Text(
                       Constants.login,
                       style: Theme.of(context).textTheme.titleMedium,

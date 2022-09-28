@@ -13,5 +13,9 @@ class Constants {
   static const String signOut = 'Sign Out';
   static const String noInternetWarning = 'You are not connected to the internet. Make sure WI-FI is on. Airplane Mode is off and try again';
   static const String noInternetConnection = 'No Internet Connection';
+  static const String checkYourEmail = 'Check your email';
+  static const String checkYourEmail_2 =  'To Confirm your email address, tap the link in the email we sent to you.';
+  static const String sendEmail = 'Open Email App';
+  static const String sendEmailLink = 'Send Email link?';
 
 }
