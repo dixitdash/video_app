@@ -2,13 +2,14 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:video_call_app/ui/signup/signup_screen.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:video_call_app/infrastructure/common/utils/constants.dart';
 
 import '../../infrastructure/repository/auth_repository.dart';
+import '../login/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -16,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _authRepo = AuthRepository.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     ModalRoute.withName('/'));
               },
-              child: Padding(
-                padding: const EdgeInsets.all(
+              child: const Padding(
+                padding: EdgeInsets.all(
                   8.0,
                 ),
                 child: Text(

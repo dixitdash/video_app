@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-import '../common/no_internet/no_internet_screen.dart';
+import '../check_internet/no_internet_screen.dart';
 
 
 class AuthNavigationScreen extends StatefulWidget {
@@ -44,8 +44,6 @@ class _AuthNavigationScreenState extends State<AuthNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.child;
-
     return Stack(
       children: [
         Visibility(
