@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
-import '../../check_internet/no_internet_screen.dart';
+import '../check_internet/no_internet_screen.dart';
 
 class AuthNavigationScreen extends StatefulWidget {
   final Widget child;
@@ -20,16 +20,18 @@ class _AuthNavigationScreenState extends State<AuthNavigationScreen> {
 
   @override
   void initState() {
-    internetConnection = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result == ConnectivityResult.none) {
-        isOffline = true;
-      } else if (result == ConnectivityResult.mobile) {
-        isOffline = false;
-      } else if (result == ConnectivityResult.wifi) {
-        isOffline = false;
-      }
-      setState(() {});
-    });
+    internetConnection = Connectivity().onConnectivityChanged.listen(
+      (ConnectivityResult result) {
+        if (result == ConnectivityResult.none) {
+          isOffline = true;
+        } else if (result == ConnectivityResult.mobile) {
+          isOffline = false;
+        } else if (result == ConnectivityResult.wifi) {
+          isOffline = false;
+        }
+        setState(() {});
+      },
+    );
 
     super.initState();
   }
@@ -44,8 +46,11 @@ class _AuthNavigationScreenState extends State<AuthNavigationScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Visibility(visible: isOffline, child: NoInternetScreen()),
-        Visibility(visible: !isOffline, child: widget.child),
+        Visibility(
+          visible: isOffline,
+          child: const NoInternetScreen(),
+        ),
+        Visibility(visible: !isOffline, child: widget.child,),
       ],
     );
   }

@@ -1,7 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../common/common_utils.dart';
+import 'package:lottie/lottie.dart';
+import 'package:video_call_app/infrastructure/common/utils/constants.dart';
+import '../../infraStructure/theme/app_theme.dart';
+import '../../infrastructure/common/utils/images.dart';
+import '../../infrastructure/model/user_model.dart';
+import '../common/common_widget.dart';
 import '../home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -15,54 +23,158 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.black,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 50.0),
-                child: CommonUtils.image,
-              ),
+            Lottie.asset(
+              Images.lottieLoginCheckEmail,
+              height: MediaQuery.of(context).size.height / 3,
             ),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    Constants.login,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                ),
-                height: MediaQuery.of(context).size.height / 2,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: FloatingActionButton.extended(
-                        onPressed: () async {
-                          UserCredential? userCred = await signInWithGoogle();
-                          if (userCred != null) {
-                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomeScreen()), (Route<dynamic> route) => false);
-                          } else {
-                            return;
-                          }
-                        },
-                        label: Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/google_logo.png',
-                              height: 50,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.alternate_email,
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: Constants.emailID,
                             ),
-                            const Text('Google Login'),
-                          ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.lock,
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: Constants.password,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      Constants.login,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Expanded(
+                          child: Divider(
+                            endIndent: 10,
+                          ),
+                        ),
+                        Text(
+                          Constants.or,
+                        ),
+                        Expanded(
+                          child: Divider(
+                            indent: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey.shade200,
+                    ),
+                    onPressed: () {},
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          Images.imGoogleLogo,
+                          height: 50,
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          Constants.loginWithGoogle,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        Constants.newToYooom,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          Constants.register,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                color: Colors.amberAccent,
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
@@ -82,11 +194,13 @@ class _LoginScreenState extends State<LoginScreen> {
     UserCredential authResult = await auth.signInWithCredential(credential);
     User? user = authResult.user;
     User currentUser = auth.currentUser!;
-    /*  UserModel userModel= UserModel(name:"${user?.displayName}",email: "${user?.email}",);
-    print('Nilesh =========>${user?.displayName},${user?.email}');
-    FirebaseFirestore.instance.collection('users').doc().set(userModel as Map<String,dynamic>);*/
+    UserModel userModel = UserModel(
+      name: "${user?.displayName}",
+      email: "${user?.email}",
+    );
+    FirebaseFirestore.instance.collection('users').doc(currentUser.uid).set(
+          userModel.toJson(),
+        );
     return authResult;
   }
-
-  Future<void> setUser() async {}
 }

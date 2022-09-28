@@ -20,36 +20,44 @@ class AppTheme {
 
   static ThemeData lightTheme() {
     return ThemeData(
-        primaryColor: primaryColor,
-        primaryColorLight: primaryLightColor,
-        primaryColorDark: primaryDarkColor,
-        scaffoldBackgroundColor: backgroundColor,
-        cardColor: whiteColor,
-        colorScheme: ColorScheme.light(secondary: secondaryColor).copyWith(secondary: accentColor),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+      primaryColor: primaryColor,
+      primaryColorLight: primaryLightColor,
+      primaryColorDark: primaryDarkColor,
+      // scaffoldBackgroundColor: backgroundColor,
+
+      colorScheme: ColorScheme.light(
+        secondary: secondaryColor,
+      ).copyWith(
+        secondary: accentColor,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(backgroundColor: const MaterialStatePropertyAll(Colors.amberAccent),
+          fixedSize: const MaterialStatePropertyAll(
+            Size(
+              350,
+              50,
+            ),
+          ),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
           ),
         ),
-        textTheme: GoogleFonts.varelaRoundTextTheme().copyWith(
-          bodyText2: TextStyle(
-            color: whiteColor,
-            fontWeight: FontWeight.w700,
-          ),
-          button: TextStyle(
-            color: whiteColor,
-            fontWeight: FontWeight.w700,
-          ),
+      ),
+
+
+      textTheme: GoogleFonts.varelaRoundTextTheme().copyWith(
+        bodyText2: TextStyle(
+          color: darkPrimaryColor,
         ),
-        inputDecorationTheme: const InputDecorationTheme(
-          contentPadding: EdgeInsets.symmetric(
-            vertical: 12,
-          ),
-          isDense: true,
-          border: OutlineInputBorder(
-            borderSide: BorderSide(),
-          ),
-        ));
+        button: const TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+
+    );
   }
 
   static ThemeData darkTheme() {
@@ -72,6 +80,21 @@ class AppTheme {
         button: TextStyle(
           color: whiteColor,
           fontWeight: FontWeight.w700,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(backgroundColor: const MaterialStatePropertyAll(Colors.amberAccent),
+          fixedSize: const MaterialStatePropertyAll(
+            Size(
+              350,
+              50,
+            ),
+          ),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
