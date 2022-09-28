@@ -1,19 +1,7 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:video_call_app/infrastructure/repository/auth_repository.dart';
-import '../../infrastructure/repository/user_repository.dart';
-import '../common/common_utils.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
 import 'package:video_call_app/infrastructure/common/utils/constants.dart';
-import '../../infraStructure/theme/app_theme.dart';
 import '../../infrastructure/common/utils/images.dart';
-import '../../infrastructure/model/user_model.dart';
-import '../common/common_widget.dart';
-import '../home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -23,8 +11,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _authRepo = AuthRepository.instance;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text(
                     Constants.login,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
@@ -99,36 +88,66 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                ),
-                height: MediaQuery.of(context).size.height / 2,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          UserCredential? userCred = await _authRepo.signInWithGoogle();
-                          if (userCred != null) {
-                            UserRepository.instance.addUser();
-                            Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (context) => const HomeScreen()),
-                              (Route<dynamic> route) => false,
-                            );
-                          } else {
-                            return;
-                          }
-                        },
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/google_logo.png',
-                              height: 50,
-                            ),
-                            const Text('Google Login'),
-                          ],
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      Constants.login,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Expanded(
+                          child: Divider(
+                            endIndent: 10,
+                          ),
                         ),
+                        Text(
+                          Constants.or,
+                        ),
+                        Expanded(
+                          child: Divider(
+                            indent: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey.shade200,
+                    ),
+                    onPressed: () {},
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          Images.imGoogleLogo,
+                          height: 50,
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          Constants.loginWithGoogle,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        Constants.newToYooom,
                       ),
                       TextButton(
                         onPressed: () {
@@ -141,10 +160,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           Constants.register,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                color: Colors.amberAccent,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    color: Colors.amberAccent,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ),
                     ],
@@ -156,26 +176,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  Future<UserCredential?> signInWithGoogle() async {
-    final FirebaseAuth auth = FirebaseAuth.instance;
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-    UserCredential authResult = await auth.signInWithCredential(credential);
-    User? user = authResult.user;
-    User currentUser = auth.currentUser!;
-    UserModel userModel = UserModel(
-      name: "${user?.displayName}",
-      email: "${user?.email}",
-    );
-    FirebaseFirestore.instance.collection('users').doc(currentUser.uid).set(
-          userModel.toJson(),
-        );
-    return authResult;
   }
 }

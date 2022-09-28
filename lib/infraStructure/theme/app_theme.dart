@@ -26,7 +26,6 @@ class AppTheme {
       primaryColor: primaryColor,
       primaryColorLight: primaryLightColor,
       primaryColorDark: primaryDarkColor,
-      // scaffoldBackgroundColor: backgroundColor,
 
       colorScheme: ColorScheme.light(
         secondary: secondaryColor,

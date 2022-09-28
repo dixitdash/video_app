@@ -32,14 +32,14 @@ class _NoInternetScreenState extends State<NoInternetScreen> {
               height: kRadialReactionRadius,
             ),
             Text(
-             Constants.noInternetConnection ,
+              Constants.noInternetConnection,
               style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(
               height: 12,
             ),
             Text(
-              Constants.noInternetWarning ,
+              Constants.noInternetWarning,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyText2?.copyWith(
                     color: Theme.of(context).iconTheme.color,

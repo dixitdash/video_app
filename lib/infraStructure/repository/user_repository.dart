@@ -11,7 +11,8 @@ class UserRepository {
   UserRepository._i();
 
   Future<void> addUser() async {
-    CollectionReference userRef = FirebaseFirestore.instance.collection('users');
+    CollectionReference userRef =
+        FirebaseFirestore.instance.collection('users');
     FirebaseAuth auth = FirebaseAuth.instance;
     User user = auth.currentUser!;
     final email = user.email;

@@ -3,7 +3,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 //pub packages
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 //packages
 import 'package:video_call_app/infraStructure/theme/app_theme.dart';
@@ -18,7 +17,6 @@ Future<void> main() async {
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
