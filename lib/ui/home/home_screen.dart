@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:video_call_app/ui/signup/signup_screen.dart';
+
+import '../../infrastructure/repository/auth_repository.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _authRepo = AuthRepository.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 40),
             TextButton(
               onPressed: () async {
-                await signOutGoogle();
+                await _authRepo.signOutGoogle();
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -52,14 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Theme.of(context).errorColor),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
-  }
-
-  signOutGoogle() async {
-    await GoogleSignIn().signOut();
   }
 }

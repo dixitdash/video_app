@@ -4,14 +4,19 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:video_call_app/infrastructure/repository/user_repository.dart';
 
 class AuthRepository {
-  AuthRepository._();
+  static final AuthRepository instance = AuthRepository._i();
 
-  static final instance = AuthRepository._();
+  factory AuthRepository() {
+    return instance;
+  }
+
+  AuthRepository._i();
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   final userRepository = UserRepository.instance;
 
+  // Google Signing
   Future<UserCredential?> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
@@ -23,11 +28,31 @@ class AuthRepository {
     return authResult;
   }
 
-  String get userId {
-    return FirebaseAuth.instance.currentUser?.uid ?? '';
+  // Google SignOut
+  signOutGoogle() async {
+    await GoogleSignIn().signOut();
   }
 
-  Future<void> signOut() async {
-    await auth.signOut();
+  // Email and password SignUp
+  Future createUserWithEmailAndPassword({required String email,required String password}) async {
+    try {
+      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  String get userId {
+    return FirebaseAuth.instance.currentUser?.uid ?? '';
   }
 }

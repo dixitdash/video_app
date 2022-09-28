@@ -13,8 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final service = AuthRepository.instance;
-  final service1 = UserRepository.instance;
+  final _authRepo = AuthRepository.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +44,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: FloatingActionButton.extended(
+                      child: ElevatedButton(
                         onPressed: () async {
-                          UserCredential? userCred = await service.signInWithGoogle();
+                          UserCredential? userCred = await _authRepo.signInWithGoogle();
                           if (userCred != null) {
-                            Navigator.of(context)
-                                .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomeScreen()), (Route<dynamic> route) => false);
+                            UserRepository.instance.addUser();
+                            Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(builder: (context) => const HomeScreen()),
+                              (Route<dynamic> route) => false,
+                            );
                           } else {
                             return;
                           }
                         },
-                        label: Row(
+                        child: Row(
                           children: [
                             Image.asset(
                               'assets/images/google_logo.png',

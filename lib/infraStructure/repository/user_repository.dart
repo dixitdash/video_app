@@ -1,16 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/user_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+class UserRepository {
+  static final UserRepository instance = UserRepository._i();
 
-class UserRepository{
-  UserRepository._();
-
-  static final instance = UserRepository._();
-
-  static Future setUser(UserModel userModel) async {
-    await FirebaseFirestore.instance.collection('user').doc(userModel.id).set(
-      userModel.toJson(),
-    );
+  factory UserRepository() {
+    return instance;
   }
 
+  UserRepository._i();
+
+  Future<void> addUser() async {
+    CollectionReference userRef = FirebaseFirestore.instance.collection('users');
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User user = auth.currentUser!;
+    final email = user.email;
+    final name = user.displayName;
+    final id = user.uid;
+    String uid = auth.currentUser!.uid.toString().trim();
+    userRef.doc(uid).set({
+      'name': name,
+      'email': email,
+      'id': id,
+    });
+    return;
+  }
 }

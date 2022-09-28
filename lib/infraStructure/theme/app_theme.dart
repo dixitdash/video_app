@@ -3,14 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   //Light Theme
-  static Color primaryColor = const Color(0xff3F51B5);
-  static Color accentColor = const Color(0xffFF4081);
+  // static Color primaryColor = const Color(0xff3F51B5);
+  static Color primaryColor = const Color(0xff545bc7);
+  // static Color accentColor = const Color(0xffFF4081);
+  static Color accentColor = const Color(0xff5d55e0);
+  // static Color primaryLightColor = const Color(0xffffa76f);
   static Color primaryLightColor = const Color(0xffffa76f);
+  // static Color primaryLightColor = const Color(0xffffa76f);
   static Color primaryDarkColor = const Color(0xff303F9F);
-  static Color backgroundColor = const Color(0xffF3E9AA);
+  // static Color primaryDarkColor = const Color(0xff303F9F);
+  static Color backgroundColor = const Color(0xffd1caff);
 
-  static Color transparentColor = const Color(0xffFB946A);
-  static Color secondaryColor = const Color(0xff02D285);
+  static Color transparentColor = const Color(0xffffdec7);
+  static Color secondaryColor = const Color(0xff14ae30);
   static Color whiteColor = const Color(0xffffffff);
 
   //Dark theme

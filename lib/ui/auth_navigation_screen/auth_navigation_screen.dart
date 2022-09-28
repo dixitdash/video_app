@@ -42,6 +42,8 @@ class _AuthNavigationScreenState extends State<AuthNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return widget.child;
+
     return Stack(
       children: [
         Visibility(visible: isOffline, child: const NoInternetScreen()),

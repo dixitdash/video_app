@@ -21,6 +21,7 @@ class _WelcomeScreenTabState extends State<WelcomeScreenTab> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -97,7 +98,7 @@ class _WelcomeScreenTabState extends State<WelcomeScreenTab> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
+                              builder: (context) => const LoginScreen(),
                             ),
                           );
                         },
