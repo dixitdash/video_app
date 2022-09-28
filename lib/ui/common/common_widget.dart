@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CommonWidget {
-
   static IconButton icon = IconButton(
     onPressed: () {
       //Navigator.pop(context);
@@ -12,5 +10,4 @@ class CommonWidget {
       color: Colors.black,
     ),
   );
-
 }

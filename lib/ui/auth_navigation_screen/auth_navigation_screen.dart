@@ -4,7 +4,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 import '../check_internet/no_internet_screen.dart';
 
-
 class AuthNavigationScreen extends StatefulWidget {
   final Widget child;
 
@@ -50,7 +49,10 @@ class _AuthNavigationScreenState extends State<AuthNavigationScreen> {
           visible: isOffline,
           child: const NoInternetScreen(),
         ),
-        Visibility(visible: !isOffline, child: widget.child,),
+        Visibility(
+          visible: !isOffline,
+          child: widget.child,
+        ),
       ],
     );
   }

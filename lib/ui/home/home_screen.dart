@@ -1,6 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:video_call_app/infrastructure/common/utils/constants.dart';
@@ -75,12 +72,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-
-  signOutGoogle() async {
-    await GoogleSignIn().signOut();
-    if (kDebugMode) {
-      print("User Sign Out");
-    }
   }
 }
