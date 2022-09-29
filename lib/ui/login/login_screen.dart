@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:video_call_app/infraStructure/repository/auth_repository.dart';
 import 'package:video_call_app/infrastructure/common/utils/constants.dart';
 import '../../infrastructure/common/utils/images.dart';
+import '../home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -123,7 +126,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey.shade200,
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                     final credential = await AuthRepository.instance.signInWithGoogle();
+                      if(credential != null){
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen()), (route) => false);
+                      }else{
+                        return;
+                      }
+                      
+                    },
                     child: Row(
                       children: [
                         Image.asset(
