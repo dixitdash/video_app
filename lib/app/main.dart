@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:video_call_app/infraStructure/theme/app_theme.dart';
 import 'package:video_call_app/ui/auth_navigation_screen/auth_navigation_screen.dart';
-import 'package:video_call_app/ui/signup/signup_screen.dart';
+import 'package:video_call_app/ui/login/login_screen.dart';
+
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme(),
       darkTheme: AppTheme.darkTheme(),
       home: const AuthNavigationScreen(
-        child: SignupScreen(),
+        child: LoginScreen(),
       ),
     );
   }

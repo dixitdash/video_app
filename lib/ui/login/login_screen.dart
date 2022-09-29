@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
 import 'package:video_call_app/infrastructure/common/utils/constants.dart';
 import 'package:video_call_app/ui/email_verification/email_verification_screen.dart';
+import 'package:video_call_app/ui/signup/signup_screen.dart';
 import '../../infraStructure/theme/app_theme.dart';
 import '../../infrastructure/common/utils/images.dart';
 import '../../infrastructure/model/user_model.dart';
@@ -168,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
+                              builder: (context) => const SignupScreen(),
                             ),
                           );
                         },

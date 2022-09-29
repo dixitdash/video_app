@@ -16,18 +16,18 @@ class EmailVerificationScreen extends StatefulWidget {
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   Timer? resendTimer;
-  int startTime = 25;
+  int startTime = 0;
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
     resendTimer = Timer.periodic(
       oneSec,
       (Timer timer) {
-        if (startTime == 0) {
+        if (startTime == 25) {
           startTime = 0;
           timer.cancel();
         } else {
-          startTime--;
+          startTime++;
         }
         setState(() {});
       },
@@ -94,7 +94,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     startTimer();
                   },
                   child: Text(
-                    resendTimer == null ? Constants.resend : "${Constants.resendLinkIn} ${startTime}s",
+                    startTime == 0  ? Constants.resend : "${Constants.resendLinkIn} ${startTime}s",
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: AppTheme.primaryColor,
                           fontWeight: FontWeight.bold,
